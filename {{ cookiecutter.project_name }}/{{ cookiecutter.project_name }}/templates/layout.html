@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html{% if cookiecutter.locale %} lang="{{ cookiecutter.locale }}"{% endif %}>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <title>{{ cookiecutter.project_name }}</title>
+
+    {% raw -%}
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>{%- endraw %}
+    
+    {% raw -%}
+    <script defer src="{{ url_for('static', filename='js/scripts.js') }}"></script>{%- endraw %}
+  </head>
+  <body>
+    {% raw -%}
+      {% block body %}
+
+        {% block content %}{% endblock %}
+
+      {% endblock %}
+    {%- endraw %}
+  </body>
+</html>
