@@ -1,5 +1,6 @@
 import os
 import sys
+import warnings
 from pathlib import Path
 
 
@@ -34,18 +35,25 @@ class Development(BaseConfig):
 
 
 class Testing(BaseConfig):
+    SECRET_KEY = '{{ cookiecutter.project_name | upper }}_TESTING'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
     TESTING = 1
 
 
 class Production(BaseConfig):
+    """Production values should be from the environment
+    and not hard coded in your config. These are simply
+    placeholders for the values you know you need to set."""
     SECRET_KEY = None
     SQLALCHEMY_DATABASE_URI = None
+    TESTING = 0
+    DEBUG = 0
 
     @classmethod
     def lazy_init(cls):
         cls.SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
         cls.SECRET_KEY = os.environ['SECRET_KEY']
+        return cls
 
 
 def resolve_config(env=''):
@@ -57,9 +65,9 @@ def resolve_config(env=''):
     elif env in ['prod', 'production']:
         cls = Production
     else:
-        print('\n\n\tERROR: Invalid environment provided, set with '
-              'PY_ENV=<env>\n\n', file=sys.stderr)
-        raise SystemExit('Invalid environment provided.')
+        warnings.warn('No environment was set with PY_ENV, you are '
+                      'getting "prod" by default to be safe!')
+        cls = Production
 
     return cls.lazy_init()
 

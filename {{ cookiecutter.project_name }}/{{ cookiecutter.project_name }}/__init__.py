@@ -16,7 +16,11 @@ def create_app(config):
 
     external.init_app(app)
 
-    # http://werkzeug.pocoo.org/docs/0.12/contrib/fixers/#werkzeug.contrib.fixers.ProxyFix
+    # Register blueprints
+
+    # http://werkzeug.pocoo.org/docs/0.12/contrib/fixers/#werkzeug.contrib.fixers.ProxyFix  # noqa
+    # In short, work behind a reverse proxy and accept the X-Forwarded-*
+    # headers.
     app.wsgi_app = ProxyFix(app.wsgi_app)
 
     return app

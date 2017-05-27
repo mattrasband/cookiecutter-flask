@@ -5,7 +5,6 @@ from {{ cookiecutter.project_name }}.config import resolve_config
 from {{ cookiecutter.project_name }}.external import db
 
 
-
 app = create_app(resolve_config(os.getenv('PY_ENV')))
 
 

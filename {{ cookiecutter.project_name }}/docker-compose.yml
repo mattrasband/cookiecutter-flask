@@ -12,7 +12,7 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:@psql/postgres
   psql:
-    image: postgres:9.6-latest
+    image: postgres:9.6-alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASS: ''

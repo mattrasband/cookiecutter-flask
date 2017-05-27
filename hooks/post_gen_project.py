@@ -11,6 +11,9 @@ def _rm(*files):
 
 
 if __name__ == '__main__':
+    # delete out docker stuff if there is no org set
     if '{{ cookiecutter.docker_org }}' == '':
         _rm('Dockerfile', 'docker-compose.yml')
 
+    if '{{ cookiecutter.autoenv }}' != 'y':
+        _rm('.autoenv.zsh')

@@ -5,7 +5,7 @@ Cookiecutter template for how I write flask projects, usually kept up to date.
 It includes the following:
 
 * Basic flask app setup, using the application factory pattern
-* Config is set up via classes, use `PY_ENV=<dev|test|prod>` to select, if ommitted an error is emitted.
+* Config is set up via classes, use `PY_ENV=<dev|test|prod>` to select, if ommitted prod is assumed to protect you.
 * `Dockerfile` and `docker-compose.yml` to run local dependencies easily
 * Flask, Flask-Login, Flask-SQLAlchemy, and postgres assumed
 

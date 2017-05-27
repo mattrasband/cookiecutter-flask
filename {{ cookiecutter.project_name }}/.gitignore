@@ -2,3 +2,8 @@
 **/__pycache__/
 
 *.sqlite3
+.cache/
+
+.venv/
+{% if cookiecutter.autoenv == 'y' -%}
+.autoenv*{%- endif %}
