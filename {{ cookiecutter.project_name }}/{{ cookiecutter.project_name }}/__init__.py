@@ -2,6 +2,7 @@ from flask import Flask
 from werkzeug.contrib.fixers import ProxyFix
 
 from {{ cookiecutter.project_name }} import external
+from {{ cookiecutter.project_name }} import blueprints
 
 
 def create_app(config):
@@ -15,8 +16,7 @@ def create_app(config):
     app.config.from_object(config)
 
     external.init_app(app)
-
-    # Register blueprints
+    blueprints.init_app(app)
 
     # http://werkzeug.pocoo.org/docs/0.12/contrib/fixers/#werkzeug.contrib.fixers.ProxyFix  # noqa
     # In short, work behind a reverse proxy and accept the X-Forwarded-*

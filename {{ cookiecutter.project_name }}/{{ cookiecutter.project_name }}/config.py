@@ -24,7 +24,7 @@ class BaseConfig:
 
 class Development(BaseConfig):
     SECRET_KEY = '{{ cookiecutter.project_name | upper }}_DEVELOPMENT'
-    SQLALCHEMY_DATABASE_URI = 'postgres://localhost/{{ cookiecutter.project_name }}'  # noqa
+    SQLALCHEMY_DATABASE_URI = 'postgres://postgres:@localhost/{{ cookiecutter.project_name }}'  # noqa
     DEBUG = 1
 
     @classmethod
@@ -57,7 +57,6 @@ class Production(BaseConfig):
 
 
 def resolve_config(env=''):
-    cls = None
     if env in ['dev', 'development']:
         cls = Development
     elif env in ['uat', 'test', 'testing']:
